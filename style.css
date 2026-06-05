@@ -1,0 +1,396 @@
+:root {
+  --bg-color: #d9f1f1;
+  --header-bg: rgba(231, 243, 243, 0.8);
+  --main_title: #1a1a1a;        
+  --subtitle_text: #666666;       
+  --chat-bg: #f9f9f9;          
+  --ai-bubble: #e7f3f3;       
+  --ai-text: #000000;
+  --user-bubble: #dddcd4;     
+  --user-text: #000000;
+  --drawer-text: #d1bcbc;  
+  --drawer-bg: #03123b; 
+  --social-link: #d1bcbc;
+  --social-link-hover: #007bff;
+  --drawer-para: #fcc6c6;
+  --drawer-heading: #ffffff;
+  --creator-tag: rgba(211, 188, 188, 0.6);
+}
+
+body.dark-theme{
+  --bg-color: #0A141D;
+  --header-bg: rgba(231, 243, 243, 0.8);
+  --main_title: #f7f7f7;
+  --drawer-text: #7d6e00; 
+   --drawer-bg: #91b0ff;
+   --drawer-para: #E11D48;
+   --creator-tag: #7d6e00;
+}
+
+body.narc-theme{
+  --bg-color: white;
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%; /* body spans the full height of the screen */
+}
+
+body {
+  position: relative;
+  background-color: var(--bg-color);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth shifts when classes update */
+}
+
+.site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 24px 40px;
+  padding-left: max(40px, 4vw);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background-color:  var(--header-bg); 
+  backdrop-filter: blur(8px);                 
+  z-index: 10;
+}
+
+.brand-accent {
+  font-family: "JetBrains Mono", monospace;
+  color: #007bff;    
+  font-weight: bold;
+  font-size: 35px;
+  letter-spacing: 1.5px;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 24px;                   
+  padding-right: max(0px, 1vw);
+}
+
+.nav-link {
+  color: #444444;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #007bff;
+}
+
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-trigger::after {
+  content: ' ▾';
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.theme-popup {
+  position: absolute;
+  right: 40px;            
+  top: 75px;                   
+  background-color: #ffffff;
+  min-width: 110px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 6px 0;
+  z-index: 100;
+}
+
+.theme-popup button {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  background: none;
+  border: none;
+  border-radius: 0;         
+  text-align: left;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: #444444;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: none;          
+}
+
+.theme-popup button:hover {
+  background-color: #f5fafd;
+  color: #007bff;
+}
+
+/* Drawer Slider */
+.about-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);          
+  opacity: 0;
+  pointer-events: none;                
+  transition: opacity 0.4s ease;
+  z-index: 900;                       
+}
+
+.side-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 420px;              
+  height: 100vh;
+  background-color: var(--drawer-bg);
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+  transform: translateX(100%);    
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1000;                       /* Floors all page layers, including header border */
+}
+
+.drawer-content {
+  padding: 60px 40px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--drawer-text);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.drawer-content h2 {
+  font-family: Baskerville, Georgia, serif;
+  font-weight: normal;
+  font-size: 32px;
+  margin-top: 0;
+  margin-bottom: 24px;
+  color: var(--drawer-heading);
+}
+
+.drawer-content h3 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #007bff;
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+.drawer-content p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--drawer-para);
+}
+
+.drawer-content ul {
+  padding-left: 20px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #d1bcbc;
+}
+
+.connect-section {
+  margin-top: auto;           
+  padding-top: 40px;
+  text-align: center; 
+}
+
+.connect-section h3 {
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 28px;       
+  margin-bottom: 24px;
+}
+
+.social-link {
+  color: var(--social-link);
+  font-size: 24px;         
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+
+.social-link:hover {
+  color: var(--social-link-hover);   
+  transform: translateY(-3px); /* pop up lift animation */
+}
+
+.creator-tag {
+  font-size: 12px !important;
+  color: var(--creator-tag) !important;
+  letter-spacing: 0.3px;
+}
+
+.about-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;                
+}
+
+.side-drawer.active {
+  transform: translateX(0);         
+}
+
+.prompt-container {
+  position: absolute;
+  left: 50%;
+  top: 100px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 90%;
+  max-width: 700px;
+}
+
+.brand-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.main-title {
+  margin: 10px;
+  font-family: Baskerville, Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 48px;
+  color: var(--main_title);
+  letter-spacing: 0.5px;
+}
+
+.sub-title {
+  align-self: flex-end;  
+   margin-bottom: 20px;
+  font-family: Georgia, Baskerville, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--subtitle_text);     
+  letter-spacing: 1px;
+}
+
+textarea::placeholder {
+  font-family: "Century Gothic", AppleGothic, Futura, sans-serif;
+  font-weight: 100;          
+  font-style: italic;       
+  color: #888888;           
+  letter-spacing: 1.4px;  
+}
+
+
+textarea {
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 15px;
+  color: #333333;
+  width: 100%;      
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: vertical;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  align-self: auto;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.chatResponses{
+  overflow-y: auto;
+  height: 400px;
+  background-color: var(--chat-bg);
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 12px;
+
+}
+
+.userQuestion{
+  align-self: flex-end;
+  background-color: var(--user-bubble);
+  color: var(--user-text);
+  padding: 8px 16px;
+  border-radius: 20px;
+  max-width: 20%;
+  margin-bottom:20px;
+}
+
+.aiResponse{
+  align-self: flex-start;
+  background-color: var(--ai-bubble);
+  color: var(--ai-text);
+  padding: 8px 16px;
+  border-radius: 20px;
+  max-width: 100%;
+  margin-bottom:20px;
+}
+
+.narc-bg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh; 
+  z-index: -1;
+  pointer-events: none;
+  overflow : hidden;
+  display: none;
+}
+
+#delete-button{
+  background-color: #dc3545;
+  align-self: flex-start;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between; /* Pushes delete to the left, send to the right */
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+}

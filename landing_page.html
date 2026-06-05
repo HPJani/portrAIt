@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700&family=JetBrains+Mono:wght@700&family=Lora:ital,wght@1,700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="narc-bg" class="narc-bg"> </div>
+
+    <div id="about-overlay" class="about-backdrop"></div>
+
+    <aside id="about-drawer" class="side-drawer">
+        <div class="drawer-content">
+            <h2>About portrAIt</h2>
+            <p><strong>portrAIt</strong> is an AI-powered Portfolio Copilot built to act as an interactive guide through my professional and educational background, competencies, skills, projects, and experiences. It answers any and all questions related to my resume and portfolio.It was created as part of a mini-project assigned to me during my first internship at a startup called Caarya. </p>
+            <p> I utilized HTML, CSS, and Vanilla JavaScript for the basic user interface and for handling asynchronous client side DOM event logic. For the actual AI intergration, I utilisied groq console API to utilise the llama-3.3-70b-versatile model. The requisite backend utilises Node.js and Express to implement the API calls. </p>
+
+
+            <div class="connect-section">
+                <h3>Connect</h3>
+                <div class="social-icons">
+                    <a href="https://github.com/HPJani" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/himanshu-pahilajani-366851311/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="mailto:himanshu.jani196@gmail.com" class="social-link" title="Gmail">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </div>
+                <p class="creator-tag">Built with care: by and for Himanshu Pahilajani.</p>
+            </div>
+        </div>
+    </aside>
+
+    <header class="site-header">
+        <span class="brand-accent">portrAIt</span>
+        
+        <div class="header-controls">
+            <a href="#about" id="about-toggle" class="nav-link">About</a>
+            
+            <div class="custom-dropdown">
+                <a href="#" id="theme-toggle" class="nav-link dropdown-trigger">Theme</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="prompt-container">
+        <div class="brand-header">
+            <img src="graphic.jpg" alt="AI Portfolio Copilot Graphic" class="header-graphic">
+            <h1 class="main-title">The AI Portfolio Copilot</h1>
+            <span class="sub-title">by and for Himanshu Pahilajani</span>
+        </div>
+
+        <div id="chatResponses"> </div>
+
+        <textarea 
+            id="prompt" 
+            name="prompt_box" 
+            rows="2"
+            cols="50" 
+            placeholder="Ask me anything about Himanshu's portfolio!"
+        ></textarea>
+        <div class="button-group">
+            <button type="button" id="delete-button">Delete Prompt</button>
+            <button type="button" id="response-button">Send Prompt</button>
+        </div>
+    </div>
+
+    <script src="main_script.js"></script>
+</body>
+</html>
