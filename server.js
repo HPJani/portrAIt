@@ -4,7 +4,7 @@ const env= require('dotenv');
 const path= require('path');
 const fs= require('fs');
 env.config();
-const port= 3000;
+const port = process.env.PORT || 3000;
 
 
 const app= express();
@@ -70,6 +70,10 @@ app.post('/api/chat', async (req, res) => {
                 "Sorry, I'm having trouble accessing the portfolio assistant right now. Please try again in a few moments."
         });
     }
+});
+
+app.get('/', (req, res) => {
+    res.send('Portfolio AI Backend Running');
 });
 
 app.listen(port, () => {
