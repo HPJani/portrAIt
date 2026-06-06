@@ -12,14 +12,14 @@ const app= express();
 app.use(cors());
 app.use(express.json());
 const sysPrompt= fs.readFileSync(path.join(__dirname, 'systemPrompt.md'), 'utf-8');
+const Portfolio = fs.readFileSync(
+            path.join(__dirname, 'Himanshu_Pahilajani_Resume_with_ranka.md'),
+            'utf-8'
+        );
 app.post('/api/chat', async (req, res) => {
     try {
         const question = req.body.question;
 
-        const Portfolio = fs.readFileSync(
-            path.join(__dirname, 'Himanshu_Pahilajani_Resume_with_ranka.md'),
-            'utf-8'
-        );
 
         const systemPrompt =
             `${sysPrompt}\n\nHere is the portfolio of the person you are talking about:\n${Portfolio}`;
